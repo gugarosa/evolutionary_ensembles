@@ -1,2 +1,11 @@
 # evo_ensembles
-Official implementation regarding the paper "".
+
+Implementation regarding the paper "".
+
+## Usage
+
+Please install all the pre-needed requirements using:
+
+```pip install -r requirements.txt```
+
+Next, ...
