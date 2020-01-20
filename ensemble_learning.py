@@ -23,7 +23,7 @@ opt_fn = e.weighted_classifier(val_pred, val_y)
 # Defining number of agents, number of variables and number of iterations
 n_agents = 10
 n_variables = val_pred.shape[1]
-n_iterations = 1
+n_iterations = 100
 
 # Defining lower and upper bounds
 lb = [0] * n_variables
@@ -36,5 +36,5 @@ hyperparams = dict(w=0.7, c1=1.7, c2=1.7)
 history = w.optimize(PSO, opt_fn, n_agents, n_variables,
                      n_iterations, lb, ub, hyperparams)
 
-# Saves the history file to an output
-history.save(f'output/{DATASET}_{FOLD}.pkl')
+# Saves the history object to an output file
+history.save(f'output/PSO_{DATASET}_{FOLD}.pkl')

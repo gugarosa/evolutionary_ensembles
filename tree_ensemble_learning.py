@@ -42,3 +42,6 @@ hyperparams = dict(p_reproduction=0.25, p_mutation=0.1,
 # Running the optimization task
 history = w.optimize_gp(opt_fn, n_trees, n_terminals, n_variables, n_iterations,
                         min_depth, max_depth, functions, lb, ub, hyperparams)
+
+# Saves the history object to an output file
+history.save(f'output/GP_{DATASET}_{FOLD}.pkl')
