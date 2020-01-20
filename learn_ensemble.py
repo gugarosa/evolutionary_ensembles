@@ -14,3 +14,6 @@ for k in range(N_FOLDS):
 
     # Loads the testing step predictions and labels
     test_pred, test_y = e.load_candidates(DATASET, 'test', k)
+
+    # Gather the majority votes between predictions
+    val_votes = e.majority_voting(val_pred)
