@@ -8,21 +8,21 @@ import utils.wrapper as w
 # Defining dataset to be used
 DATASET = 'RSDataset'
 
+# Defining step to be used
+STEP = 'validation'
+
 # Defining number of folds to be used
 FOLD = 0
 
-# Loads the validation step predictions and labels
-val_pred, val_y = l.load_candidates(DATASET, 'validation', FOLD)
-
-# Loads the testing step predictions and labels
-# test_pred, test_y = l.load_candidates(DATASET, 'test', FOLD)
+# Loads the predictions and labels
+preds, y = l.load_candidates(DATASET, STEP, FOLD)
 
 # Defining function to be optimized
-opt_fn = e.weighted_classifier(val_pred, val_y)
+opt_fn = e.weighted_classifier(preds, y)
 
 # Defining number of agents, number of variables and number of iterations
 n_agents = 10
-n_variables = val_pred.shape[1]
+n_variables = preds.shape[1]
 n_iterations = 100
 
 # Defining lower and upper bounds
@@ -37,4 +37,4 @@ history = w.optimize(PSO, opt_fn, n_agents, n_variables,
                      n_iterations, lb, ub, hyperparams)
 
 # Saves the history object to an output file
-history.save(f'output/PSO_{DATASET}_{FOLD}.pkl')
+history.save(f'output/PSO_{DATASET}_{STEP}_{FOLD}.pkl')

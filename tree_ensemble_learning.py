@@ -6,22 +6,22 @@ import utils.wrapper as w
 # Defining dataset to be used
 DATASET = 'RSDataset'
 
+# Defining step to be used
+STEP = 'validation'
+
 # Defining number of folds to be used
 FOLD = 0
 
-# Loads the validation step predictions and labels
-val_pred, val_y = l.load_candidates(DATASET, 'validation', FOLD)
-
-# Loads the testing step predictions and labels
-# test_pred, test_y = l.load_candidates(DATASET, 'test', FOLD)
+# Loads the predictions and labels
+preds, y = l.load_candidates(DATASET, STEP, FOLD)
 
 # Defining function to be optimized
-opt_fn = e.weighted_classifier(val_pred, val_y)
+opt_fn = e.weighted_classifier(preds, y)
 
 # Defining number of trees, number of terminals, number of variables and number of iterations
 n_trees = 10
 n_terminals = 2
-n_variables = val_pred.shape[1]
+n_variables = preds.shape[1]
 n_iterations = 100
 
 # Defining minimum and maximum depth of trees
@@ -44,4 +44,4 @@ history = w.optimize_gp(opt_fn, n_trees, n_terminals, n_variables, n_iterations,
                         min_depth, max_depth, functions, lb, ub, hyperparams)
 
 # Saves the history object to an output file
-history.save(f'output/GP_{DATASET}_{FOLD}.pkl')
+history.save(f'output/GP_{DATASET}_{STEP}_{FOLD}.pkl')
