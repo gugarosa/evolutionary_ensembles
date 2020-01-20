@@ -8,6 +8,7 @@ __pycache__/
 
 # Mac OS Files
 **/*.DS_Store
+.vscode
 
 # Distribution / packaging
 .Python
