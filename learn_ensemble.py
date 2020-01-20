@@ -1,4 +1,5 @@
 import models.ensemble as e
+import utils.metrics as m
 
 # Defining dataset to be used
 DATASET = 'RSDataset'
