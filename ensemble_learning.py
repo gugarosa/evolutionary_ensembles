@@ -21,9 +21,9 @@ val_pred, val_y = l.load_candidates(DATASET, 'validation', FOLD)
 opt_fn = e.weighted_classifier(val_pred, val_y)
 
 # Defining number of agents, number of variables and number of iterations
-n_agents = 100
+n_agents = 10
 n_variables = val_pred.shape[1]
-n_iterations = 1000
+n_iterations = 1
 
 # Defining lower and upper bounds
 lb = [0] * n_variables
@@ -35,3 +35,6 @@ hyperparams = dict(w=0.7, c1=1.7, c2=1.7)
 # Running the optimization task
 history = w.optimize(PSO, opt_fn, n_agents, n_variables,
                      n_iterations, lb, ub, hyperparams)
+
+# Saves the history file to an output
+history.save(f'output/{DATASET}_{FOLD}.pkl')

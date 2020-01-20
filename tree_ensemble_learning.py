@@ -22,7 +22,7 @@ opt_fn = e.weighted_classifier(val_pred, val_y)
 n_trees = 10
 n_terminals = 2
 n_variables = val_pred.shape[1]
-n_iterations = 10
+n_iterations = 100
 
 # Defining minimum and maximum depth of trees
 min_depth = 2

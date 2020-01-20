@@ -24,9 +24,6 @@ def weighted_classifier(preds, labels):
 
         """
 
-        # Ensures that the sum of candidates is one and avoids division by zero
-        # w = w / max(w.sum(), 1e-10)
-
         # Gathering the maximum label identifier
         max_label = np.max(labels)
 
@@ -38,7 +35,7 @@ def weighted_classifier(preds, labels):
             # For every possible classifier
             for j in range(preds.shape[1]):
                 # Sums the weighted classifier's prediction to its position in the final array
-                w_preds[i][preds[i][j]] += preds[i][j] * w[j]
+                w_preds[i][preds[i][j]] += w[j]
 
         # Gathers the most weighted prediction
         hat_preds = np.argmax(w_preds, axis=1)
