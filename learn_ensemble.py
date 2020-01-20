@@ -1,19 +1,15 @@
-import utils.dictionary as d
-import utils.load as l
+import models.ensemble as e
 
 # Defining dataset to be used
 DATASET = 'RSDataset'
 
-# Defining step to be used
-STEP = 'validation'
-
 # Defining number of folds to be used
-N_FOLDS = 5
+N_FOLDS = 1
 
 # For each possible fold
 for k in range(N_FOLDS):
-    # Loads the ground truth labels from desired dataset, step and fold
-    labels = l.load_labels(DATASET, STEP, k)
+    # Loads the validation step predictions and labels
+    val_pred, val_y = e.load_candidates(DATASET, 'validation', k)
 
-    # Loads the predictions from desired dataset, step and fold
-    preds = l.load_predictions(DATASET, STEP, k)
+    # Loads the testing step predictions and labels
+    test_pred, test_y = e.load_candidates(DATASET, 'test', k)
