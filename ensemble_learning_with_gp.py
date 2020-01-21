@@ -22,10 +22,6 @@ def get_arguments():
     parser.add_argument('dataset', help='Dataset identifier', choices=[
                         'RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
 
-    # Adds a step argument with pre-defined choices
-    parser.add_argument(
-        'step', help='Whether it should load from validation', choices=['val'])
-
     # Adds an identifier argument to the desired fold identifier
     parser.add_argument('fold', help='Fold identifier',
                         type=int, choices=range(1, 6))
@@ -59,7 +55,7 @@ if __name__ == '__main__':
 
     # Gathering variables from arguments
     dataset = args.dataset
-    step = args.step
+    step = 'val'
     fold = args.fold
 
     # Loads the predictions and labels
