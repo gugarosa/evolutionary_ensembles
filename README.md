@@ -31,7 +31,7 @@ There are 4+1 simple steps in order to accomplish the same experiments described
 
  * Install the requirements;
  * Perform the majority voting;
- * Optimize weight-based ensembles;
+ * Optimize weight-based or boolean-based ensembles;
  * Process post-optimization information for further comparison;
  * (Optional) Calculate diversity metrics between classifiers.
  
@@ -49,9 +49,9 @@ Our first ensemble-based baseline is to use the Majority Voting in order to crea
 
 *Note that it will output a helper file in order to assist in choosing the correct arguments for the script.*
 
-### Optimizing Weight-Based Ensembles
+### Optimizing Weight-Based or Boolean-Based Ensembles
 
-After defining the Majority Voting baselines, now we can proceed and try to find the most suitable weights for the ensemble through a meta-heuristic optimization process. Just choose the following scripts and invoke their helper:
+After defining the Majority Voting baselines, now we can proceed and try to find the most suitable weights for the ensemble (one can use a weight-based or a boolean-based approach) through a meta-heuristic optimization process. Just choose the following scripts and invoke their helper:
 
 ```python ensemble_learning.py -h```
 

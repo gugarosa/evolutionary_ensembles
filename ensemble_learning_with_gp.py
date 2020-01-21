@@ -26,6 +26,9 @@ def get_arguments():
     parser.add_argument('fold', help='Fold identifier',
                         type=int, choices=range(1, 6))
 
+    # Adds an identifier argument to the desired type of ensemble
+    parser.add_argument('type', help='Ensemble type identifier', choices=['weight', 'boolean'])
+
     # Adds an identifier argument to the desired number of trees
     parser.add_argument(
         '-n_trees', help='Number of Genetic Programming trees', type=int, default=10)
@@ -57,12 +60,20 @@ if __name__ == '__main__':
     dataset = args.dataset
     step = 'val'
     fold = args.fold
+    type = args.type
 
     # Loads the predictions and labels
     preds, y = l.load_candidates(dataset, step, fold)
 
-    # Defining function to be optimized
-    opt_fn = e.weighted_classifiers(preds, y)
+    # Checks if the type of used ensemble was weight-based
+    if type == 'weight':
+        # Defining function to be optimized
+        opt_fn = e.weighted_classifiers(preds, y)
+
+    # Or if it was boolean-based
+    elif type == 'boolean':
+        # Defining function to be optimized
+        opt_fn = e.boolean_classifiers(preds, y)
 
     # Defining number of trees, number of terminals, number of variables and number of iterations
     n_trees = args.n_trees
@@ -90,4 +101,4 @@ if __name__ == '__main__':
                             min_depth, max_depth, functions, lb, ub, hyperparams)
 
     # Saves the history object to an output file
-    history.save(f'output/gp_{dataset}_{step}_{fold}.pkl')
+    history.save(f'output/gp_{type}_{dataset}_{step}_{fold}.pkl')

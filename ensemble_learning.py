@@ -27,6 +27,10 @@ def get_arguments():
     parser.add_argument('fold', help='Fold identifier',
                         type=int, choices=range(1, 6))
 
+    # Adds an identifier argument to the desired type of ensemble
+    parser.add_argument('type', help='Ensemble type identifier', choices=[
+                        'weight', 'boolean'])
+
     # Adds an identifier argument to the desired meta-heuristic
     parser.add_argument('mh', help='Meta-heuristic identifier',
                         choices=['abc', 'ba', 'bha', 'cs', 'fa', 'fpa', 'pso'])
@@ -50,13 +54,21 @@ if __name__ == '__main__':
     dataset = args.dataset
     step = 'val'
     fold = args.fold
+    type = args.type
     meta = args.mh
 
     # Loads the predictions and labels
     preds, y = l.load_candidates(dataset, step, fold)
 
-    # Defining function to be optimized
-    opt_fn = e.weighted_classifiers(preds, y)
+    # Checks if the type of used ensemble was weight-based
+    if type == 'weight':
+        # Defining function to be optimized
+        opt_fn = e.weighted_classifiers(preds, y)
+
+    # Or if it was boolean-based
+    elif type == 'boolean':
+        # Defining function to be optimized
+        opt_fn = e.boolean_classifiers(preds, y)
 
     # Defining number of agents, number of variables, number of iterations, meta-heuristic and hyperparams
     n_agents = args.n_agents
@@ -74,4 +86,4 @@ if __name__ == '__main__':
                          n_iterations, lb, ub, hyperparams)
 
     # Saves the history object to an output file
-    history.save(f'output/{meta}_{dataset}_{step}_{fold}.pkl')
+    history.save(f'output/{meta}_{type}_{dataset}_{step}_{fold}.pkl')
