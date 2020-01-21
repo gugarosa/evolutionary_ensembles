@@ -17,7 +17,7 @@ STEP = 'validation'
 FOLD = 0
 
 # Defining an input file
-input_file = f'output/{ALGORITHM}_{DATASET}_{STEP}_{FOLD}.pkl'
+input_file = f'output/{ALGORITHM}_{DATASET}_{STEP}_0.pkl'
 
 # Creating a History object
 h = History()
@@ -26,7 +26,7 @@ h = History()
 h.load(input_file)
 
 # Loading the predictions and labels
-preds, y = l.load_candidates(DATASET, STEP, FOLD)
+preds, y = l.load_candidates(DATASET, 'test', FOLD)
 
 # Gathering the best weights
 best_weights = np.asarray(h.best_agent[-1][0])

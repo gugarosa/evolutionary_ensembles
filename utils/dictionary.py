@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def create_dictionary(dataset):
+def create_dictionary(dataset='RSDataset'):
     """It creates a dictionary for a particular dataset.
 
     Args:

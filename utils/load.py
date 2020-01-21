@@ -3,7 +3,7 @@ import numpy as np
 import utils.dictionary as d
 
 
-def load_labels(dataset, step, fold):
+def load_labels(dataset='RSDataset', step='validation', fold=1):
     """Loads ground truth labels from a particular dataset, step (validation or test) and fold number.
 
     Args:
@@ -20,7 +20,7 @@ def load_labels(dataset, step, fold):
     dictionary = d.create_dictionary(dataset)
 
     # Defines the file input path
-    file_path = f'data/{dataset}/{step}/ground_{fold + 1}.txt'
+    file_path = f'data/{dataset}/{step}/ground_{fold}.txt'
 
     # Creates a list of labels
     labels = []
@@ -33,7 +33,7 @@ def load_labels(dataset, step, fold):
     return np.asarray(labels)
 
 
-def load_predictions(dataset, step, fold):
+def load_predictions(dataset='RSDataset', step='validation', fold=1):
     """Loads predictions from a particular dataset, step (validation or test) and fold number.
 
     Args:
@@ -50,7 +50,7 @@ def load_predictions(dataset, step, fold):
     dictionary = d.create_dictionary(dataset)
 
     # Defines the file input path
-    file_path = f'data/{dataset}/{step}/pred_{fold + 1}.txt'
+    file_path = f'data/{dataset}/{step}/pred_{fold}.txt'
 
     # Creates a list of labels
     preds = []
@@ -66,7 +66,7 @@ def load_predictions(dataset, step, fold):
     return np.asarray(preds)
 
 
-def load_candidates(dataset, step, fold):
+def load_candidates(dataset='RSDataset', step='validation', fold=1):
     """Loads candidates from a particular dataset, step (validation or test) and fold number.
 
     Args:
@@ -79,8 +79,6 @@ def load_candidates(dataset, step, fold):
 
     """
 
-    print(f'Loading candidates from ({dataset}, {step}, {fold}) ...')
-
     # Loads the ground truth labels from desired dataset, step and fold
     labels = load_labels(dataset, step, fold)
 
@@ -92,7 +90,5 @@ def load_candidates(dataset, step, fold):
         # If not, raises a RuntimeError
         raise RuntimeError(
             'Amount of ground truth labels differ from predictions.')
-
-    print(f'Predictions: {preds.shape} | Ground Truth: {labels.shape}.')
 
     return preds, labels

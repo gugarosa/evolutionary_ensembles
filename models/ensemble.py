@@ -2,7 +2,7 @@ import numpy as np
 import utils.metrics as m
 
 
-def weighted_classifier(preds, labels):
+def weighted_classifiers(preds, labels):
     """Creates a function that weights classifier's predictions and minimizes it accuracy.
 
     Args:
@@ -59,12 +59,8 @@ def majority_voting(preds):
 
     """
 
-    print('Calculating majority voting ...')
-
     # Calculate the majority votes by finding the most frequent number in array
     votes = [np.argmax(np.bincount(pred)) for pred in preds]
-
-    print('Votes calculated.')
 
     return np.asarray(votes)
 

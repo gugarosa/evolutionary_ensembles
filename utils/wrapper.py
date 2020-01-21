@@ -39,7 +39,7 @@ def optimize(opt, target, n_agents, n_variables, n_iterations, lb, ub, hyperpara
     optimizer = opt(hyperparams=hyperparams)
 
     # Creating the optimization task
-    task = Opytimizer(space, optimizer, function)
+    task = Opytimizer(space=space, optimizer=optimizer, function=function)
 
     return task.start()
 
@@ -77,6 +77,6 @@ def optimize_gp(target, n_trees, n_terminals, n_variables, n_iterations, min_dep
     optimizer = GP(hyperparams=hyperparams)
 
     # Creating the optimization task
-    task = Opytimizer(space, optimizer, function)
+    task = Opytimizer(space=space, optimizer=optimizer, function=function)
 
     return task.start()
