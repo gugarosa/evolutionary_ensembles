@@ -1,11 +1,9 @@
 import argparse
 
 import models.ensemble as e
+import utils.constants as c
 import utils.load as l
 import utils.metrics as m
-
-# Defining a constant to fulfill number of folds
-N_FOLDS = 5
 
 
 def get_arguments():
@@ -32,7 +30,7 @@ if __name__ == '__main__':
     # Gathers the input arguments
     args = get_arguments()
 
-    # Gathering dataset
+    # Gathering variables from arguments
     dataset = args.dataset
 
     # Creating empty lists to save outputs
@@ -41,8 +39,8 @@ if __name__ == '__main__':
     print(f'\nPerforming majority voting over {dataset} ...\n')
 
     # For each possible fold
-    for k in range(N_FOLDS):
-        print(f'Fold {k+1}/{N_FOLDS}:')
+    for k in range(c.N_FOLDS):
+        print(f'Fold {k+1}/{c.N_FOLDS}:')
 
         # Loads the validation step predictions and labels
         val_pred, val_y = l.load_candidates(dataset, 'val', k+1)
@@ -71,11 +69,11 @@ if __name__ == '__main__':
     print('Saving outputs ...')
 
     # Saving validation accuracies to file
-    with open(f'output/MV_{dataset}_val.txt', 'w') as f:
+    with open(f'output/mv_{dataset}_val.txt', 'w') as f:
         f.writelines([f'{acc}\n' for acc in val_accs])
 
     # Saving testing accuracies to file
-    with open(f'output/MV_{dataset}_test.txt', 'w') as f:
+    with open(f'output/mv_{dataset}_test.txt', 'w') as f:
         f.writelines([f'{acc}\n' for acc in test_accs])
 
     print('Outputs saved.')

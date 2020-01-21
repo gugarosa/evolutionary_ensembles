@@ -24,7 +24,7 @@ def get_arguments():
     parser.add_argument(
         'step', help='Whether it should load from validation or test', choices=['val', 'test'])
 
-    # Adds an identifier argument to the desired number of fold
+    # Adds an identifier argument to the desired fold identifier
     parser.add_argument('fold', help='Fold identifier',
                         type=int, choices=range(1, 6))
 
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     # Gathers the input arguments
     args = get_arguments()
 
-    # Gathering arguments
+    # Gathering variables from arguments
     dataset = args.dataset
     step = args.step
     fold = args.fold
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     print(f'\nSaving outputs ...')
 
     # Saving outputs
-    with open(f'output/M_{dataset}_{step}_{fold}_{classifier_i}_{classifier_j}.txt', 'w') as f:
+    with open(f'output/metrics_{dataset}_{step}_{fold}_{classifier_i}_{classifier_j}.txt', 'w') as f:
         f.write(f'COR {corr}\nDM {dm}\nDFM {dfm}\nIA {ia}\nQSTAT {q_stat}')
 
     print('Outputs saved.')
