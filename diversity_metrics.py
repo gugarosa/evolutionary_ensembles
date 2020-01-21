@@ -57,6 +57,10 @@ if __name__ == '__main__':
     # Loads the predictions and labels
     preds, y = l.load_candidates(dataset, step, fold)
 
+    # Calculating classifiers accuracy
+    acc_i = m.accuracy(preds[:, classifier_i], y)
+    acc_j = m.accuracy(preds[:, classifier_j], y)
+
     # Calculating correlation between classifier `i` and classifier `j`
     corr = m.correlation(preds[:, classifier_i],
                          preds[:, classifier_j], y)
@@ -77,6 +81,8 @@ if __name__ == '__main__':
     q_stat = m.q_statistics(
         preds[:, classifier_i], preds[:, classifier_j], y)
 
+    print(f'i-Classifier Accuracy: {acc_i}.')
+    print(f'j-Classifier Accuracy: {acc_j}.')
     print(f'Correlation: {corr}.')
     print(f'Disagreement Measure: {dm}.')
     print(f'Double-Fault Measure: {dfm}.')
@@ -87,6 +93,6 @@ if __name__ == '__main__':
 
     # Saving outputs
     with open(f'output/metrics_{dataset}_{step}_{fold}_{classifier_i}_{classifier_j}.txt', 'w') as f:
-        f.write(f'COR {corr}\nDM {dm}\nDFM {dfm}\nIA {ia}\nQSTAT {q_stat}')
+        f.write(f'ACC_I {acc_i}\nACC_J {acc_j}\nCOR {corr}\nDM {dm}\nDFM {dfm}\nIA {ia}\nQSTAT {q_stat}')
 
     print('Outputs saved.')
