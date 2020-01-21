@@ -1,47 +1,97 @@
+import argparse
+
 import models.ensemble as e
 import utils.load as l
 import utils.metrics as m
 import utils.wrapper as w
 
-# Defining dataset to be used
-DATASET = 'RSDataset'
 
-# Defining step to be used
-STEP = 'validation'
+def get_arguments():
+    """Gets arguments from the command line.
 
-# Defining number of folds to be used
-FOLD = 0
+    Returns:
+        A parser with the input arguments.
 
-# Loads the predictions and labels
-preds, y = l.load_candidates(DATASET, STEP, FOLD)
+    """
 
-# Defining function to be optimized
-opt_fn = e.weighted_classifier(preds, y)
+    # Creates the ArgumentParser
+    parser = argparse.ArgumentParser(
+        usage='Optimizes an weighted-based ensemble using Genetic Programming.')
 
-# Defining number of trees, number of terminals, number of variables and number of iterations
-n_trees = 10
-n_terminals = 2
-n_variables = preds.shape[1]
-n_iterations = 100
+    # Adds a dataset argument with pre-defined choices
+    parser.add_argument('dataset', help='Dataset identifier', choices=[
+                        'RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
 
-# Defining minimum and maximum depth of trees
-min_depth = 2
-max_depth = 5
+    # Adds a step argument with pre-defined choices
+    parser.add_argument(
+        'step', help='Whether it should load from validation', choices=['val'])
 
-# Defining functions nodes
-functions = ['SUM', 'SUB', 'MUL', 'DIV']
+    # Adds an identifier argument to the desired fold identifier
+    parser.add_argument('fold', help='Fold identifier',
+                        type=int, choices=range(1, 6))
 
-# Defining lower and upper bounds
-lb = [0] * n_variables
-ub = [1] * n_variables
+    # Adds an identifier argument to the desired number of trees
+    parser.add_argument(
+        '-n_trees', help='Number of Genetic Programming trees', type=int, default=10)
 
-# Defining meta-heuristic hyperparameters
-hyperparams = dict(p_reproduction=0.25, p_mutation=0.1,
-                   p_crossover=0.2, prunning_ratio=0.0)
+    # Adds an identifier argument to the desired number of terminals
+    parser.add_argument(
+        '-n_terminals', help='Number of Genetic Programming terminals', type=int, default=2)
 
-# Running the optimization task
-history = w.optimize_gp(opt_fn, n_trees, n_terminals, n_variables, n_iterations,
-                        min_depth, max_depth, functions, lb, ub, hyperparams)
+    # Adds an identifier argument to the desired number of iterations
+    parser.add_argument(
+        '-n_iter', help='Number of Genetic Programming iterations', type=int, default=10)
 
-# Saves the history object to an output file
-history.save(f'output/GP_{DATASET}_{STEP}_{FOLD}.pkl')
+    # Adds an identifier argument to the desired minimum depth
+    parser.add_argument(
+        '-min_depth', help='Minimum depth of Genetic Programming trees', type=int, default=2)
+
+    # Adds an identifier argument to the desired maximum depth
+    parser.add_argument(
+        '-max_depth', help='Maximum depth of Genetic Programming trees', type=int, default=5)
+
+    return parser.parse_args()
+
+
+if __name__ == '__main__':
+    # Gathers the input arguments
+    args = get_arguments()
+
+    # Gathering variables from arguments
+    dataset = args.dataset
+    step = args.step
+    fold = args.fold
+
+    # Loads the predictions and labels
+    preds, y = l.load_candidates(dataset, step, fold)
+
+    # Defining function to be optimized
+    opt_fn = e.weighted_classifiers(preds, y)
+
+    # Defining number of trees, number of terminals, number of variables and number of iterations
+    n_trees = args.n_trees
+    n_terminals = args.n_terminals
+    n_variables = preds.shape[1]
+    n_iterations = args.n_iter
+
+    # Defining minimum and maximum depth of trees
+    min_depth = args.min_depth
+    max_depth = args.max_depth
+
+    # Defining functions nodes
+    functions = ['SUM', 'SUB', 'MUL', 'DIV']
+
+    # Defining lower and upper bounds
+    lb = [0] * n_variables
+    ub = [1] * n_variables
+
+    # Defining meta-heuristic hyperparameters
+    hyperparams = dict(p_reproduction=0.25, p_mutation=0.1,
+                       p_crossover=0.2, prunning_ratio=0.0)
+
+    # Running the optimization task
+    history = w.optimize_gp(opt_fn, n_trees, n_terminals, n_variables, n_iterations,
+                            min_depth, max_depth, functions, lb, ub, hyperparams)
+
+    # Saves the history object to an output file
+    history.save(f'output/gp_{dataset}_{step}_{fold}.pkl')

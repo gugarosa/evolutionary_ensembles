@@ -40,7 +40,6 @@ def get_arguments():
 
 
 if __name__ == '__main__':
-
     # Gathers the input arguments
     args = get_arguments()
 

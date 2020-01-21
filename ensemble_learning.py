@@ -25,7 +25,7 @@ def get_arguments():
 
     # Adds a step argument with pre-defined choices
     parser.add_argument(
-        'step', help='Whether it should load from validation or test', choices=['val', 'test'])
+        'step', help='Whether it should load from validation', choices=['val'])
 
     # Adds an identifier argument to the desired fold identifier
     parser.add_argument('fold', help='Fold identifier',
@@ -47,7 +47,6 @@ def get_arguments():
 
 
 if __name__ == '__main__':
-
     # Gathers the input arguments
     args = get_arguments()
 
