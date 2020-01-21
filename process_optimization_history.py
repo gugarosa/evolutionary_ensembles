@@ -32,7 +32,6 @@ def get_arguments():
     parser.add_argument('mh', help='Meta-heuristic identifier',
                         choices=['abc', 'ba', 'bha', 'cs', 'fa', 'fpa', 'gp', 'pso'])
 
-
     return parser.parse_args()
 
 
@@ -70,6 +69,7 @@ if __name__ == '__main__':
 
     print('\nSaving outputs ...')
 
+    # Saving outputs
     with open(f'output/{meta}_{dataset}_test_{fold}.txt', 'w') as f:
         f.write(f'{acc}\n{best_weights}')
 
