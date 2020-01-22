@@ -1,4 +1,6 @@
 import numpy as np
+
+import utils.constants as c
 import utils.metrics as m
 
 
@@ -72,6 +74,9 @@ def weighted_classifiers(preds, labels):
             1 - accuracy.
 
         """
+
+        # Ensuring that the sum of weights is one and avoids division by zero
+        w = w / max(w.sum(), c.EPSILON)
 
         # Gathering the maximum label identifier
         max_label = np.max(labels)
