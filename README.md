@@ -25,7 +25,7 @@ If you use our work to fulfill any of your needs, please cite us:
     * `mh.py`: Wraps the meta-heuristic classes;
     * `wrapper.py`: Wraps the optimization tasks;
 
-## How-to Use
+## How-to-Use
 
 There are 4+1 simple steps in order to accomplish the same experiments described in the paper:
 
@@ -69,7 +69,7 @@ Finally, after concluding the optimization step over the validation sets, it is 
 
 ### (Optional) Diversity Metrics
 
-As an optional procedure, one can also calculate some diversity metrics between classifiers. Please use the following script in order to accomplish such approach:
+As an optional procedure, one can also calculate some diversity metrics between classifiers. Please use the following script in order to accomplish such an approach:
 
 ```python diversity_metrics.py -h```
 
