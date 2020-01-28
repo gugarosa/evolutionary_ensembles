@@ -1,4 +1,5 @@
 import argparse
+import time
 
 import numpy as np
 from opytimizer.utils.history import History
@@ -73,15 +74,25 @@ if __name__ == '__main__':
         # Rounding weights to fulfill the boolean-based ensemble
         best_weights = np.round(best_weights)
 
+    # Defining the starting time of ensemble creation
+    start = time.time()
+
     # Evaluating ensemble
     acc = e.evaluate(best_weights, preds, y)
 
+    # Defining the ending time of ensemble creation
+    end = time.time()
+
     print(f'Ensemble accuracy: {acc}')
+    print(f'Time to create: {end-start} seconds')
 
     print('\nSaving outputs ...')
 
     # Saving outputs
     with open(f'output/{meta}_{type}_{dataset}_test_{fold}.txt', 'w') as f:
         f.write(f'{acc}\n{best_weights}')
+
+    with open(f'output/{meta}_{type}_{dataset}_test_{fold}.time', 'w') as f:
+        f.write(f'{end-start}')
 
     print('Outputs saved.')
