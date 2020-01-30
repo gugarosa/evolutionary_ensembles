@@ -6,11 +6,6 @@ from opytimizer.optimizers.gp import GP
 from opytimizer.spaces.search import SearchSpace
 from opytimizer.spaces.tree import TreeSpace
 
-import utils.constants as c
-
-# Random seed for experimental consistency
-np.random.seed(c.SEED)
-
 
 def optimize(opt, target, n_agents, n_variables, n_iterations, lb, ub, hyperparams):
     """Abstracts all Opytimizer's mechanisms into a single method.

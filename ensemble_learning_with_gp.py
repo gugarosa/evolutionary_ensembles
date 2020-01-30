@@ -1,5 +1,7 @@
 import argparse
 
+import numpy as np
+
 import models.ensemble as e
 import utils.load as l
 import utils.metrics as m
@@ -61,6 +63,9 @@ if __name__ == '__main__':
     step = 'val'
     fold = args.fold
     type = args.type
+
+    # Random seed for experimental consistency
+    np.random.seed(fold-1)
 
     # Loads the predictions and labels
     preds, y = l.load_candidates(dataset, step, fold)
