@@ -1,6 +1,6 @@
-# ?
+# Creating Classifier Ensembles through Meta-heuristic Algorithms for Aerial Scene Classification
 
-*This repository holds all the necessary code to run the very-same experiments described in the paper "?".*
+*This repository holds all the necessary code to run the very-same experiments described in the paper "Creating Classifier Ensembles through Meta-heuristic Algorithms for Aerial Scene Classification".*
 
 ## References
 
