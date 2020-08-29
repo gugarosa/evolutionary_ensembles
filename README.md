@@ -1,12 +1,20 @@
 # Creating Classifier Ensembles through Meta-heuristic Algorithms for Aerial Scene Classification
 
+Convolutional Neural Networks (CNN) have been being widely employed to solve the challenging remote sensing task of aerial scene classification. Nevertheless, it is not straightforward to find single CNN models that can solve all aerial scene classification tasks, allowing the development of a better alternative, which is to fuse CNN-based classifiers into an ensemble. However, an appropriate choice of the classifiers that will belong to the ensemble is a critical factor, as it is unfeasible to employ all the possible classifiers in the literature. Therefore, this work proposes a novel framework based on meta-heuristic optimization for creating optimized ensembles in the context of aerial scene classification. The experimental results were performed across nine meta-heuristic algorithms and three aerial scene literature datasets, being  compared in terms of effectiveness (accuracy), efficiency (execution time), and behavioral performance in different scenarios...
+
 *This repository holds all the necessary code to run the very-same experiments described in the paper "Creating Classifier Ensembles through Meta-heuristic Algorithms for Aerial Scene Classification".*
 
 ## References
 
 If you use our work to fulfill any of your needs, please cite us:
-
 ```
+@inproceedings{Ferreira2020:ICPR,
+ author    = {Álvaro R. Ferreira Jr and Gustavo H. de Rosa and João P. Papa and Gustavo Carneiro and Fabio A. Faria},
+ title     = {Creating Classifier Ensembles through Meta-heuristic Algorithms for Aerial Scene Classification},
+booktitle = {Intl. Conf. on Pattern Recognition (ICPR)},
+ year      = {2020},
+ pages     ={to appear}
+ }
 ```
 
 ## Structure
