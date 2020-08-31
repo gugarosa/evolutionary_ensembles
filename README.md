@@ -2,12 +2,16 @@
 
 *This repository holds all the necessary code to run the very-same experiments described in the paper "Creating Classifier Ensembles through Meta-heuristic Algorithms for Aerial Scene Classification".*
 
+---
+
 ## References
 
 If you use our work to fulfill any of your needs, please cite us:
 
 ```
 ```
+
+---
 
 ## Structure
 
@@ -24,6 +28,8 @@ If you use our work to fulfill any of your needs, please cite us:
     * `metrics.py`: Provides several metrics calculations;
     * `mh.py`: Wraps the meta-heuristic classes;
     * `wrapper.py`: Wraps the optimization tasks;
+
+---
 
 ## How-to-Use
 
@@ -74,3 +80,5 @@ As an optional procedure, one can also calculate some diversity metrics between 
 ```python diversity_metrics.py -h```
 
 *Note that this script will also calculate both classifier accuracies over the desired dataset and fold.*
+
+---
