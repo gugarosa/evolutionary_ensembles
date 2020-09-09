@@ -31,21 +31,17 @@ If you use our work to fulfill any of your needs, please cite us:
 
 ---
 
-## How-to-Use
+## Package Guidelines
 
-There are 4+1 simple steps in order to accomplish the same experiments described in the paper:
-
- * Install the requirements;
- * Perform the majority voting;
- * Optimize weight-based or boolean-based ensembles;
- * Process post-optimization information for further comparison;
- * (Optional) Calculate diversity metrics between classifiers.
- 
 ### Installation
 
-Please install all the pre-needed requirements using:
+Install all the pre-needed requirements using:
 
 ```pip install -r requirements.txt```
+
+---
+
+## Usage
 
 ### Majority Voting
 
@@ -80,5 +76,11 @@ As an optional procedure, one can also calculate some diversity metrics between 
 ```python diversity_metrics.py -h```
 
 *Note that this script will also calculate both classifier accuracies over the desired dataset and fold.*
+
+---
+
+## Support
+
+We know that we do our best, but it is inevitable to acknowledge that we make mistakes. If you ever need to report a bug, report a problem, talk to us, please do so! We will be available at our bests at this repository or gustavo.rosa@unesp.br.
 
 ---
