@@ -2,7 +2,7 @@ import numpy as np
 from opytimizer import Opytimizer
 from opytimizer.core.function import Function
 from opytimizer.core.optimizer import Optimizer
-from opytimizer.optimizers.gp import GP
+from opytimizer.optimizers.evolutionary.gp import GP
 from opytimizer.spaces.search import SearchSpace
 from opytimizer.spaces.tree import TreeSpace
 
@@ -33,7 +33,10 @@ def optimize(opt, target, n_agents, n_variables, n_iterations, lb, ub, hyperpara
     function = Function(pointer=target)
 
     # Creating Optimizer
-    optimizer = opt(hyperparams=hyperparams)
+    if opt.__name__ is not 'BH':
+        optimizer = opt(hyperparams=hyperparams)
+    else:
+        optimizer = opt()
 
     # Creating the optimization task
     task = Opytimizer(space=space, optimizer=optimizer, function=function)

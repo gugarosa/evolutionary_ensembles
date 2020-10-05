@@ -35,7 +35,7 @@ If you use our work to fulfill any of your needs, please cite us:
 
 ### Installation
 
-Install all the pre-needed requirements using:
+You may just install the pre-needed requirements under your most preferred Python 3+ environment (raw, conda, virtualenv, whatever):
 
 ```Python
 pip install -r requirements.txt
@@ -80,6 +80,14 @@ python process_optimization_history.py -h
 ```
 
 *Note that the optimization process will always output a `.pkl` file, while the other scripts will output a `*.txt` file.*
+
+### Bash Script
+
+Instead of invoking every script to conduct the experiments, it is also possible to use the provided shell script, as follows:
+
+./pipeline.sh
+
+Such a script will conduct every step needed to accomplish the experimentation used throughout this paper. Furthermore, one can change any input argument that is defined in the script.
 
 ### (Optional) Diversity Metrics
 
