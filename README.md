@@ -85,7 +85,9 @@ python process_optimization_history.py -h
 
 Instead of invoking every script to conduct the experiments, it is also possible to use the provided shell script, as follows:
 
+```Bash
 ./pipeline.sh
+```
 
 Such a script will conduct every step needed to accomplish the experimentation used throughout this paper. Furthermore, one can change any input argument that is defined in the script.
 
