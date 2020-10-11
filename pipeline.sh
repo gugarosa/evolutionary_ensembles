@@ -28,5 +28,11 @@ for DATA in "${DATASETS[@]}"; do
 
         # Processes GP optimization history
         python process_optimization_history.py $DATA $FOLD $TYPE gp
+
+        # Learns an ensemble with UMDA
+        python ensemble_learning_with_umda.py $DATA $FOLD -n_agents 10 -n_iter 10
+
+        # Processes UMDA optimization history
+        python process_optimization_history.py $DATA $FOLD $TYPE umda
     done
 done

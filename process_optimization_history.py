@@ -34,7 +34,7 @@ def get_arguments():
 
     # Adds an identifier argument to the desired meta-heuristic
     parser.add_argument('mh', help='Meta-heuristic identifier',
-                        choices=['abc', 'ba', 'bha', 'cs', 'fa', 'fpa', 'gp', 'pso'])
+                        choices=['abc', 'ba', 'bha', 'cs', 'fa', 'fpa', 'gp', 'pso', 'umda'])
 
     return parser.parse_args()
 

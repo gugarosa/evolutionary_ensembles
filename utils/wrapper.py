@@ -2,7 +2,9 @@ import numpy as np
 from opytimizer import Opytimizer
 from opytimizer.core.function import Function
 from opytimizer.core.optimizer import Optimizer
+from opytimizer.optimizers.boolean.umda import UMDA
 from opytimizer.optimizers.evolutionary.gp import GP
+from opytimizer.spaces.boolean import BooleanSpace
 from opytimizer.spaces.search import SearchSpace
 from opytimizer.spaces.tree import TreeSpace
 
@@ -44,7 +46,8 @@ def optimize(opt, target, n_agents, n_variables, n_iterations, lb, ub, hyperpara
     return task.start(store_best_only=True)
 
 
-def optimize_gp(target, n_trees, n_terminals, n_variables, n_iterations, min_depth, max_depth, functions, lb, ub, hyperparams):
+def optimize_gp(target, n_trees, n_terminals, n_variables, n_iterations, min_depth, max_depth,
+                functions, lb, ub, hyperparams):
     """Abstracts Opytimizer's Genetic Programming into a single method.
 
     Args:
@@ -75,6 +78,36 @@ def optimize_gp(target, n_trees, n_terminals, n_variables, n_iterations, min_dep
 
     # Creating GP's optimizer
     optimizer = GP(hyperparams=hyperparams)
+
+    # Creating the optimization task
+    task = Opytimizer(space=space, optimizer=optimizer, function=function)
+
+    return task.start(store_best_only=True)
+
+
+def optimize_umda(target, n_agents, n_variables, n_iterations, hyperparams):
+    """Abstracts Opytimizer's Univariate Marginal Distribution Algorithm into a single method.
+
+    Args:
+        target (callable): The method to be optimized.
+        n_agents (int): Number of agents.
+        n_variables (int): Number of variables.
+        n_iterations (int): Number of iterations.
+        hyperparams (dict): Dictionary of hyperparameters.
+
+    Returns:
+        A History object containing all optimization's information.
+
+    """
+
+    # Creating the BooleanSpace
+    space = BooleanSpace(n_agents=n_agents, n_iterations=n_iterations, n_variables=n_variables)
+
+    # Creating the Function
+    function = Function(pointer=target)
+
+    # Creating UMDA's optimizer
+    optimizer = UMDA(hyperparams=hyperparams)
 
     # Creating the optimization task
     task = Opytimizer(space=space, optimizer=optimizer, function=function)
