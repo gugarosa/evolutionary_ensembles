@@ -18,16 +18,13 @@ def get_arguments():
     """
 
     # Creates the ArgumentParser
-    parser = argparse.ArgumentParser(
-        usage='Process the post-optimization information into real results.')
+    parser = argparse.ArgumentParser(usage='Process the post-optimization information into real results.')
 
     # Adds a dataset argument with pre-defined choices
-    parser.add_argument('dataset', help='Dataset identifier', choices=[
-                        'RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
+    parser.add_argument('dataset', help='Dataset identifier', choices=['RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
 
     # Adds an identifier argument to the desired fold identifier
-    parser.add_argument('fold', help='Fold identifier',
-                        type=int, choices=range(1, 6))
+    parser.add_argument('fold', help='Fold identifier',type=int, choices=range(1, 6))
 
     # Adds an identifier argument to the desired type of ensemble
     parser.add_argument('type', help='Ensemble type identifier', choices=['weight', 'boolean'])

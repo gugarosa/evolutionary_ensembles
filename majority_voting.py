@@ -16,12 +16,10 @@ def get_arguments():
     """
 
     # Creates the ArgumentParser
-    parser = argparse.ArgumentParser(
-        usage='Creates an ensemble of classifiers based on majority voting.')
+    parser = argparse.ArgumentParser(usage='Creates an ensemble of classifiers based on majority voting.')
 
     # Adds a dataset argument with pre-defined choices
-    parser.add_argument('dataset', help='Dataset identifier', choices=[
-                        'RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
+    parser.add_argument('dataset', help='Dataset identifier', choices=['RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
 
     return parser.parse_args()
 

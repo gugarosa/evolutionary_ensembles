@@ -13,6 +13,7 @@ def boolean_classifiers(preds, labels):
 
     Returns:
         A function to be optimized.
+
     """
 
     def f(w):
@@ -62,6 +63,7 @@ def weighted_classifiers(preds, labels):
 
     Returns:
         A function to be optimized.
+        
     """
 
     def f(w):

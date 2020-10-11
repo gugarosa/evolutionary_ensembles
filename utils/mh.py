@@ -14,6 +14,7 @@ class MetaHeuristic:
         Args:
             obj (Optimizer): An Optimizer-child instance.
             hyperparams (dict): Meta-heuristic hyperparams.
+            
         """
 
         # Creates a property to hold the class itself

@@ -13,28 +13,22 @@ def get_arguments():
     """
 
     # Creates the ArgumentParser
-    parser = argparse.ArgumentParser(
-        usage='Creates an ensemble of classifiers based on majority voting.')
+    parser = argparse.ArgumentParser(usage='Calculates a set of diversity metrics.')
 
     # Adds a dataset argument with pre-defined choices
-    parser.add_argument('dataset', help='Dataset identifier', choices=[
-                        'RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
+    parser.add_argument('dataset', help='Dataset identifier', choices=['RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
 
     # Adds a step argument with pre-defined choices
-    parser.add_argument(
-        'step', help='Whether it should load from validation or test', choices=['val', 'test'])
+    parser.add_argument('step', help='Whether it should load from validation or test', choices=['val', 'test'])
 
     # Adds an identifier argument to the desired fold identifier
-    parser.add_argument('fold', help='Fold identifier',
-                        type=int, choices=range(1, 6))
+    parser.add_argument('fold', help='Fold identifier', type=int, choices=range(1, 6))
 
     # Adds an identifier argument to classifier `i`
-    parser.add_argument('i', help='Classifier `i` identifier',
-                        type=int, choices=range(0, 70))
+    parser.add_argument('i', help='Classifier `i` identifier', type=int, choices=range(0, 70))
 
     # Adds an idenfier argument to classifier `j`
-    parser.add_argument('j', help='Classifier `j` identifier',
-                        type=int, choices=range(0, 70))
+    parser.add_argument('j', help='Classifier `j` identifier', type=int, choices=range(0, 70))
 
     return parser.parse_args()
 
@@ -51,8 +45,7 @@ if __name__ == '__main__':
     classifier_j = args.j
 
     print(f'\nCalculating diversity metrics over {dataset} ...')
-    print(
-        f'Step: {step} | Fold: {fold} | Classifiers: ({classifier_i}, {classifier_j})\n')
+    print(f'Step: {step} | Fold: {fold} | Classifiers: ({classifier_i}, {classifier_j})\n')
 
     # Loads the predictions and labels
     preds, y = l.load_candidates(dataset, step, fold)
@@ -62,24 +55,19 @@ if __name__ == '__main__':
     acc_j = m.accuracy(preds[:, classifier_j], y)
 
     # Calculating correlation between classifier `i` and classifier `j`
-    corr = m.correlation(preds[:, classifier_i],
-                         preds[:, classifier_j], y)
+    corr = m.correlation(preds[:, classifier_i], preds[:, classifier_j], y)
 
     # Calculating disagreement measure between classifier `i` and classifier `j`
-    dm = m.disagreement_measure(
-        preds[:, classifier_i], preds[:, classifier_j], y)
+    dm = m.disagreement_measure(preds[:, classifier_i], preds[:, classifier_j], y)
 
     # Calculating double-fault measure between classifier `i` and classifier `j`
-    dfm = m.double_fault_measure(
-        preds[:, classifier_i], preds[:, classifier_j], y)
+    dfm = m.double_fault_measure(preds[:, classifier_i], preds[:, classifier_j], y)
 
     # Calculating interrater agreement between classifier `i` and classifier `j`
-    ia = m.interrater_agreement(
-        preds[:, classifier_i], preds[:, classifier_j], y)
+    ia = m.interrater_agreement(preds[:, classifier_i], preds[:, classifier_j], y)
 
     # Calculating q-statistics between classifier `i` and classifier `j`
-    q_stat = m.q_statistics(
-        preds[:, classifier_i], preds[:, classifier_j], y)
+    q_stat = m.q_statistics(preds[:, classifier_i], preds[:, classifier_j], y)
 
     print(f'i-Classifier Accuracy: {acc_i}.')
     print(f'j-Classifier Accuracy: {acc_j}.')

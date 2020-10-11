@@ -63,13 +63,19 @@ After defining the Majority Voting baselines, now we can proceed and try to find
 python ensemble_learning.py -h
 ```
 
-or
+and
 
 ```Python
 python ensemble_learning_with_gp.py -h
 ```
 
-*Note that Genetic Programming-based optimization is included in a different script due to its particular structure defined in the Opytimizer library.*
+and
+
+```Python
+python ensemble_learning_with_umda.py -h
+```
+
+*Note that Genetic Programming- and Univariate Marginal Distribution Algorithm-based optimization are included in different scripts due to their particular structure defined in the Opytimizer library.*
 
 ### Post-Optimization Processing
 

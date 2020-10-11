@@ -17,39 +17,31 @@ def get_arguments():
     """
 
     # Creates the ArgumentParser
-    parser = argparse.ArgumentParser(
-        usage='Optimizes an weighted-based ensemble using Genetic Programming.')
+    parser = argparse.ArgumentParser(usage='Optimizes an ensemble using Genetic Programming.')
 
     # Adds a dataset argument with pre-defined choices
-    parser.add_argument('dataset', help='Dataset identifier', choices=[
-                        'RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
+    parser.add_argument('dataset', help='Dataset identifier', choices=['RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
 
     # Adds an identifier argument to the desired fold identifier
-    parser.add_argument('fold', help='Fold identifier',
-                        type=int, choices=range(1, 6))
+    parser.add_argument('fold', help='Fold identifier', type=int, choices=range(1, 6))
 
     # Adds an identifier argument to the desired type of ensemble
     parser.add_argument('type', help='Ensemble type identifier', choices=['weight', 'boolean'])
 
     # Adds an identifier argument to the desired number of trees
-    parser.add_argument(
-        '-n_trees', help='Number of Genetic Programming trees', type=int, default=10)
+    parser.add_argument('-n_trees', help='Number of Genetic Programming trees', type=int, default=10)
 
     # Adds an identifier argument to the desired number of terminals
-    parser.add_argument(
-        '-n_terminals', help='Number of Genetic Programming terminals', type=int, default=2)
+    parser.add_argument('-n_terminals', help='Number of Genetic Programming terminals', type=int, default=2)
 
     # Adds an identifier argument to the desired number of iterations
-    parser.add_argument(
-        '-n_iter', help='Number of Genetic Programming iterations', type=int, default=10)
+    parser.add_argument('-n_iter', help='Number of Genetic Programming iterations', type=int, default=10)
 
     # Adds an identifier argument to the desired minimum depth
-    parser.add_argument(
-        '-min_depth', help='Minimum depth of Genetic Programming trees', type=int, default=2)
+    parser.add_argument('-min_depth', help='Minimum depth of Genetic Programming trees', type=int, default=2)
 
     # Adds an identifier argument to the desired maximum depth
-    parser.add_argument(
-        '-max_depth', help='Maximum depth of Genetic Programming trees', type=int, default=5)
+    parser.add_argument('-max_depth', help='Maximum depth of Genetic Programming trees', type=int, default=5)
 
     return parser.parse_args()
 
