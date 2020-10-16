@@ -38,7 +38,7 @@ If you use our work to fulfill any of your needs, please cite us:
 You may just install the pre-needed requirements under your most preferred Python 3+ environment (raw, conda, virtualenv, whatever):
 
 ```Python
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ---
@@ -50,7 +50,7 @@ pip install -r requirements.txt
 Our first ensemble-based baseline is to use the Majority Voting in order to create a count-based ensemble. With that in mind, just run the following script with the input arguments:
 
 ```Python
-python majority_voting.py -h
+python3 majority_voting.py -h
 ```
 
 *Note that it will output a helper file in order to assist in choosing the correct arguments for the script.*
@@ -60,19 +60,19 @@ python majority_voting.py -h
 After defining the Majority Voting baselines, now we can proceed and try to find the most suitable weights for the ensemble (one can use a weight-based or a boolean-based approach) through a meta-heuristic optimization process. Just choose the following scripts and invoke their helper:
 
 ```Python
-python ensemble_learning.py -h
+python3 ensemble_learning.py -h
 ```
 
 and
 
 ```Python
-python ensemble_learning_with_gp.py -h
+python3 ensemble_learning_with_gp.py -h
 ```
 
 and
 
 ```Python
-python ensemble_learning_with_umda.py -h
+python3 ensemble_learning_with_umda.py -h
 ```
 
 *Note that Genetic Programming- and Univariate Marginal Distribution Algorithm-based optimization are included in different scripts due to their particular structure defined in the Opytimizer library.*
@@ -82,7 +82,7 @@ python ensemble_learning_with_umda.py -h
 Finally, after concluding the optimization step over the validation sets, it is now possible to load back the best weights found during the optimization procedure and apply them into a weight-based ensemble over the testing set. Run the following script in order to fulfill that purpose:
 
 ```Python
-python process_optimization_history.py -h
+python3 process_optimization_history.py -h
 ```
 
 *Note that the optimization process will always output a `.pkl` file, while the other scripts will output a `*.txt` file.*
@@ -102,7 +102,7 @@ Such a script will conduct every step needed to accomplish the experimentation u
 As an optional procedure, one can also calculate some diversity metrics between classifiers. Please use the following script in order to accomplish such an approach:
 
 ```Python
-python diversity_metrics.py -h
+python3 diversity_metrics.py -h
 ```
 
 *Note that this script will also calculate both classifier accuracies over the desired dataset and fold.*
