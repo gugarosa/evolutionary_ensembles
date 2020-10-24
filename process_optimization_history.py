@@ -87,7 +87,8 @@ if __name__ == '__main__':
 
     # Saving outputs
     with open(f'output/{meta}_{type}_{dataset}_test_{fold}.txt', 'w') as f:
-        f.write(f'{acc}\n{best_weights}')
+        f.write(f'{acc}\n{best_weights}\n{np.where(best_weights>0,1,0).sum()}')
+
 
     with open(f'output/{meta}_{type}_{dataset}_test_{fold}.time', 'w') as f:
         f.write(f'{end-start}')
