@@ -23,6 +23,9 @@ def get_arguments():
     # Adds a dataset argument with pre-defined choices
     parser.add_argument('dataset', help='Dataset identifier', choices=['RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
 
+    # Adds a descriptor argument with pre-defined choices
+    parser.add_argument('descriptor', help='Descriptor identifier', choices=['global', 'cnn', 'all'])
+
     # Adds an identifier argument to the desired fold identifier
     parser.add_argument('fold', help='Fold identifier', type=int, choices=range(1, 6))
 
@@ -41,6 +44,7 @@ if __name__ == '__main__':
 
     # Gathering variables from arguments
     dataset = args.dataset
+    descriptor = args.descriptor
     step = 'val'
     fold = args.fold
 
@@ -49,6 +53,16 @@ if __name__ == '__main__':
 
     # Loads the predictions and labels
     preds, y = l.load_candidates(dataset, step, fold)
+
+    # If descriptor is global-based
+    if descriptor == 'global':
+        # Gets the global predictors
+        preds = preds[:, :35]
+
+    # If descriptor is cnn-based
+    elif descriptor == 'cnn':
+        # Gets the CNN predictors
+        preds = preds[:, 35:]
 
     # Defining function to be optimized
     opt_fn = e.boolean_classifiers(preds, y)
