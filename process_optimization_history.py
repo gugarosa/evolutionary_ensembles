@@ -23,6 +23,9 @@ def get_arguments():
     # Adds a dataset argument with pre-defined choices
     parser.add_argument('dataset', help='Dataset identifier', choices=['RSDataset', 'RSSCN7', 'UCMerced_LandUse'])
 
+    # Adds a descriptor argument with pre-defined choices
+    parser.add_argument('descriptor', help='Descriptor identifier', choices=['global', 'cnn', 'all'])
+
     # Adds an identifier argument to the desired fold identifier
     parser.add_argument('fold', help='Fold identifier',type=int, choices=range(1, 6))
 
@@ -42,6 +45,7 @@ if __name__ == '__main__':
 
     # Gathering variables from arguments
     dataset = args.dataset
+    descriptor = args.descriptor
     fold = args.fold
     type = args.type
     meta = args.mh
@@ -58,6 +62,16 @@ if __name__ == '__main__':
     # Loading the predictions and labels
     preds, y = l.load_candidates(dataset, 'test', fold)
 
+    # If descriptor is global-based
+    if descriptor == 'global':
+        # Gets the global predictors
+        preds = preds[:, :35]
+
+    # If descriptor is cnn-based
+    elif descriptor == 'cnn':
+        # Gets the CNN predictors
+        preds = preds[:, 35:]
+
     # Gathering the best weights
     best_weights = np.asarray(h.best_agent[-1][0])
 
@@ -73,6 +87,8 @@ if __name__ == '__main__':
 
     # Defining the starting time of ensemble creation
     start = time.time()
+
+    print(best_weights.shape, preds.shape, y.shape)
 
     # Evaluating ensemble
     acc = e.evaluate(best_weights, preds, y)
