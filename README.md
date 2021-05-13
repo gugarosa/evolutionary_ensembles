@@ -8,7 +8,17 @@
 
 If you use our work to fulfill any of your needs, please cite us:
 
-```
+```BibTex
+@inproceedings{Ferreira:21,
+  author={Ferreira, Álvaro R. and de Rosa, Gustavo H. and Papa, João P. and Carneiro, Gustavo and Faria, Fabio A.},
+  booktitle={2020 25th International Conference on Pattern Recognition (ICPR)}, 
+  title={Creating Classifier Ensembles through Meta-heuristic Algorithms for Aerial Scene Classification}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={415-422},
+  doi={10.1109/ICPR48806.2021.9412938}
+}
 ```
 
 ---
