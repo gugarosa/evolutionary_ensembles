@@ -121,6 +121,6 @@ python3 diversity_metrics.py -h
 
 ## Support
 
-We know that we do our best, but it is inevitable to acknowledge that we make mistakes. If you ever need to report a bug, report a problem, talk to us, please do so! We will be available at our bests at this repository or gustavo.rosa@unesp.br, aalvin10@gmail.com and ffaria@unifesp.br.
+We know that we do our best, but it is inevitable to acknowledge that we make mistakes. If you ever need to report a bug, report a problem, talk to us, please do so! We will be available at our bests at this repository or aalvin10@gmail.com and ffaria@unifesp.br.
 
 ---
